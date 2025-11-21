@@ -41,12 +41,17 @@ import {
 } from '@vue-ui/ui'
 import { ref } from 'vue'
 import CodeExample from './components/CodeExample.vue'
+import FileTree from './components/FileTree.vue'
+import type { TreeItem } from './data/component-tree'
+import { componentTree } from './data/component-tree'
 
 const name = ref('')
 const darkMode = ref(false)
 const useMultiColumn = ref(true) // Toggle between layouts
 const showSecondarySidebar = ref(true)
 const showAside = ref(true)
+const searchQuery = ref('')
+const activeComponentId = ref('')
 
 const toggleDarkMode = () => {
   darkMode.value = !darkMode.value
@@ -101,17 +106,18 @@ const people: ComboboxOption[] = [
 
 // Calendar
 const selectedDate = ref<Date | Date[] | null>(null)
-// Component tree for secondary sidebar
-const componentTree = [
-  { name: 'Base Components', expanded: true },
-  { name: '  Button.vue', file: true },
-  { name: '  Input.vue', file: true },
-  { name: '  Badge.vue', file: true },
-  { name: 'Layout Components', expanded: true },
-  { name: '  SidebarLayout.vue', file: true },
-  { name: '  MultiColumnLayout.vue', file: true },
-  { name: '  Navbar.vue', file: true },
-]
+
+// FileTree handlers
+const handleFileClick = (item: TreeItem) => {
+  if (item.type === 'file' && item.id) {
+    activeComponentId.value = item.id
+    // Scroll to component section
+    const element = document.getElementById(item.id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+}
 
 // Code examples used in CodeExample wrappers
 const buttonColorsCode = `<template>
@@ -522,20 +528,31 @@ import { Button } from '@vue-ui/ui'
 
     <!-- Secondary Sidebar -->
     <template #secondary-sidebar>
-      <div class="px-4 py-6 sm:px-6 lg:px-8">
-        <Heading :level="3" class="mb-4">Component Tree</Heading>
-        <ul class="space-y-1 text-sm">
-          <li
-            v-for="(item, index) in componentTree"
-            :key="index"
-            :class="[
-              item.file ? 'pl-4 text-zinc-600 dark:text-zinc-400' : 'font-semibold text-zinc-900 dark:text-white',
-              'py-1',
-            ]"
-          >
-            {{ item.name }}
-          </li>
-        </ul>
+      <div class="flex h-full flex-col">
+        <!-- Search Bar -->
+        <div class="shrink-0 border-b border-zinc-200 p-3 dark:border-white/10">
+          <div class="relative">
+            <MagnifyingGlassIcon
+              class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-zinc-400"
+            />
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Search components..."
+              class="w-full rounded-md border border-zinc-300 bg-white py-2 pr-3 pl-9 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden dark:border-white/10 dark:bg-zinc-900 dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:ring-indigo-400"
+            />
+          </div>
+        </div>
+
+        <!-- File Tree -->
+        <div class="flex-1 overflow-y-auto py-3">
+          <FileTree
+            :items="componentTree"
+            :active-id="activeComponentId"
+            :search-query="searchQuery"
+            @item-click="handleFileClick"
+          />
+        </div>
       </div>
     </template>
 
@@ -549,7 +566,7 @@ import { Button } from '@vue-ui/ui'
         </div>
 
         <!-- Buttons Section -->
-        <section class="space-y-4">
+        <section id="button" class="space-y-4">
           <Heading :level="2">Buttons</Heading>
 
           <div class="space-y-4">
@@ -570,7 +587,7 @@ import { Button } from '@vue-ui/ui'
         </section>
 
         <!-- Inputs Section -->
-        <section class="space-y-4">
+        <section id="input" class="space-y-4">
           <Heading :level="2">Inputs</Heading>
 
           <div class="space-y-4">
@@ -587,7 +604,7 @@ import { Button } from '@vue-ui/ui'
         </section>
 
         <!-- Badges Section -->
-        <section class="space-y-4">
+        <section id="badge" class="space-y-4">
           <Heading :level="2">Badges</Heading>
 
           <div class="flex flex-wrap gap-3">
@@ -600,13 +617,13 @@ import { Button } from '@vue-ui/ui'
         </section>
 
         <!-- Breadcrumbs Section -->
-        <section class="space-y-4">
+        <section id="breadcrumbs" class="space-y-4">
           <Heading :level="2">Breadcrumbs</Heading>
           <Breadcrumbs :items="breadcrumbItems" />
         </section>
 
         <!-- Tabs Section -->
-        <section class="space-y-4">
+        <section id="tabs" class="space-y-4">
           <Heading :level="2">Tabs</Heading>
           <Tabs v-model="selectedTab">
             <TabList>
