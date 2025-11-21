@@ -1,0 +1,45 @@
+{
+  "name": "vue-ui-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter demo dev",
+    "storybook": "storybook dev -p 6006 --config-dir apps/storybook/.storybook",
+    "build": "pnpm --recursive --filter \"./packages/*\" build",
+    "build:demo": "pnpm --filter demo build",
+    "build:storybook": "pnpm --filter @vue-ui/storybook build",
+    "lint": "pnpm --recursive --parallel lint",
+    "format": "prettier --write \"**/*.{ts,tsx,vue,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,vue,json,css,md}\"",
+    "typecheck": "pnpm --recursive --parallel typecheck",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.3",
+    "@eslint/js": "^9.39.1",
+    "@storybook/addon-a11y": "^10.0.8",
+    "@storybook/addon-docs": "^10.0.8",
+    "@storybook/addon-onboarding": "^10.0.8",
+    "@storybook/addon-vitest": "^10.0.8",
+    "@storybook/vue3-vite": "^10.0.8",
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.47.0",
+    "@typescript-eslint/parser": "^8.47.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-storybook": "^10.0.8",
+    "eslint-plugin-vue": "^10.5.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.2.0",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "storybook": "^10.0.8",
+    "typescript": "^5.8.3",
+    "vue-eslint-parser": "^10.2.0",
+    "vue-tsc": "^2.2.12"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
