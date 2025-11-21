@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
     "@vue-ui/theme": "workspace:*",
     "@vue-ui/ui": "workspace:*",
     "shiki": "^3.15.0",
