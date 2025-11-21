@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@vue-ui/theme/theme.css';
+@import './styles/vscode-theme.css';
 @source '../../../packages/ui/src';
 
 html,

@@ -40,6 +40,7 @@ import {
   Text,
 } from '@vue-ui/ui'
 import { ref } from 'vue'
+import CodeExample from './components/CodeExample.vue'
 
 const name = ref('')
 const darkMode = ref(false)
@@ -111,6 +112,33 @@ const componentTree = [
   { name: '  MultiColumnLayout.vue', file: true },
   { name: '  Navbar.vue', file: true },
 ]
+
+// Code examples used in CodeExample wrappers
+const buttonColorsCode = `<template>
+  <div class="flex flex-wrap gap-3">
+    <Button>Default</Button>
+    <Button color="indigo">Indigo</Button>
+    <Button color="blue">Blue</Button>
+    <Button color="green">Green</Button>
+    <Button color="red">Red</Button>
+  </div>
+</template>
+
+<script setup>
+import { Button } from '@vue-ui/ui'
+<\/script>`
+
+const buttonVariantsCode = `<template>
+  <div class="flex flex-wrap gap-3">
+    <Button outline>Outline</Button>
+    <Button plain>Plain</Button>
+    <Button disabled>Disabled</Button>
+  </div>
+</template>
+
+<script setup>
+import { Button } from '@vue-ui/ui'
+<\/script>`
 </script>
 
 <template>
@@ -180,7 +208,7 @@ const componentTree = [
           <section class="space-y-4">
             <Heading :level="2">Buttons</Heading>
 
-            <div class="space-y-4">
+            <CodeExample title="Button Color Variants" :code="buttonColorsCode">
               <div class="flex flex-wrap gap-3">
                 <Button>Default</Button>
                 <Button color="indigo">Indigo</Button>
@@ -188,13 +216,15 @@ const componentTree = [
                 <Button color="green">Green</Button>
                 <Button color="red">Red</Button>
               </div>
+            </CodeExample>
 
+            <CodeExample title="Button Variants" :code="buttonVariantsCode">
               <div class="flex flex-wrap gap-3">
                 <Button outline>Outline</Button>
                 <Button plain>Plain</Button>
                 <Button disabled>Disabled</Button>
               </div>
-            </div>
+            </CodeExample>
           </section>
 
           <!-- Inputs Section -->
@@ -359,7 +389,7 @@ const componentTree = [
                 item.current
                   ? 'bg-indigo-600 text-white dark:bg-white/5 dark:text-white'
                   : 'text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white',
-                'group flex gap-x-3 rounded-md p-3 text-sm/6 font-semibold',
+                'vscode-nav-item group flex gap-x-3 rounded-md p-3 text-sm/6 font-semibold',
               ]"
             >
               <component :is="item.icon" class="size-6 shrink-0" aria-hidden="true" />
@@ -383,7 +413,7 @@ const componentTree = [
       >
         <button
           type="button"
-          class="-m-2.5 p-2.5 text-zinc-700 lg:hidden dark:text-zinc-400"
+          class="vscode-icon-button -m-2.5 p-2.5 text-zinc-700 lg:hidden dark:text-zinc-400"
           @click="toggleMobileSidebar"
         >
           <span class="sr-only">Open sidebar</span>
@@ -418,7 +448,10 @@ const componentTree = [
             </Button>
 
             <!-- Notifications -->
-            <button type="button" class="-m-2.5 p-2.5 text-zinc-400 hover:text-zinc-500 dark:hover:text-white">
+            <button
+              type="button"
+              class="vscode-icon-button -m-2.5 p-2.5 text-zinc-400 hover:text-zinc-500 dark:hover:text-white"
+            >
               <span class="sr-only">View notifications</span>
               <BellIcon class="size-6" aria-hidden="true" />
             </button>
@@ -466,24 +499,22 @@ const componentTree = [
 
     <!-- Footer / Status Bar -->
     <template #footer>
-      <div
-        class="flex h-8 items-center justify-between bg-indigo-600 px-4 py-1.5 text-sm text-white dark:bg-indigo-700"
-      >
+      <div class="vscode-statusbar flex h-8 items-center justify-between px-4 py-1.5 text-sm text-white">
         <div class="flex items-center gap-x-4">
-          <button class="flex items-center gap-x-1.5 rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">
+          <button class="vscode-statusbar-item flex items-center gap-x-1.5 rounded px-2 py-0.5">
             <svg class="size-4" fill="currentColor" viewBox="0 0 16 16">
               <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z" />
               <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
             </svg>
             <span class="font-medium">main</span>
           </button>
-          <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">✓ 0 ✗ 0</button>
-          <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">⚠ 0</button>
+          <button class="vscode-statusbar-item rounded px-2 py-0.5">✓ 0 ✗ 0</button>
+          <button class="vscode-statusbar-item rounded px-2 py-0.5">⚠ 0</button>
         </div>
         <div class="flex items-center gap-x-4">
-          <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">Vue 3.5.13</button>
-          <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">TypeScript</button>
-          <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">UTF-8</button>
+          <button class="vscode-statusbar-item rounded px-2 py-0.5">Vue 3.5.13</button>
+          <button class="vscode-statusbar-item rounded px-2 py-0.5">TypeScript</button>
+          <button class="vscode-statusbar-item rounded px-2 py-0.5">UTF-8</button>
           <button class="rounded px-2 py-0.5 hover:bg-indigo-700 dark:hover:bg-indigo-800">LF</button>
         </div>
       </div>

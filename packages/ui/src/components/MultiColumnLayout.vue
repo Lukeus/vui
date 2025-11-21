@@ -125,7 +125,7 @@ const asideClasses = computed(() =>
     <aside
       :class="
         cn(
-          'hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:overflow-hidden lg:border-r lg:border-zinc-200 lg:bg-zinc-50 dark:lg:border-white/10 dark:lg:bg-zinc-900',
+          'vscode-icon-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:overflow-hidden lg:border-r lg:border-zinc-200 lg:bg-zinc-50 dark:lg:border-white/10 dark:lg:bg-zinc-900',
           props.iconSidebarWidth
         )
       "
@@ -134,14 +134,14 @@ const asideClasses = computed(() =>
     </aside>
 
     <!-- Desktop Secondary Sidebar (fixed, left-20, optional) -->
-    <aside v-if="showSecondarySidebar" :class="secondarySidebarClasses">
+    <aside v-if="showSecondarySidebar" :class="cn('vscode-secondary-sidebar', secondarySidebarClasses)">
       <slot name="secondary-sidebar" />
     </aside>
 
     <!-- Main content area with padding for sidebars -->
-    <div :class="mainContentClasses">
+    <div :class="cn('vscode-main-content', mainContentClasses)">
       <!-- Navbar -->
-      <div :class="navbarContainerClasses">
+      <div :class="cn('vscode-navbar', navbarContainerClasses)">
         <slot name="navbar" :toggle-mobile-sidebar="toggleMobileSidebar" />
       </div>
 
@@ -153,14 +153,14 @@ const asideClasses = computed(() =>
       <!-- Footer / Status Bar -->
       <footer
         v-if="showFooter"
-        class="fixed right-0 bottom-0 left-0 z-20 border-t border-zinc-200 dark:border-zinc-800"
+        class="vscode-statusbar fixed right-0 bottom-0 left-0 z-20 border-t border-zinc-200 dark:border-zinc-800"
       >
         <slot name="footer" />
       </footer>
     </div>
 
     <!-- Right Aside (fixed, optional) -->
-    <aside v-if="showAside" :class="asideClasses">
+    <aside v-if="showAside" :class="cn('vscode-aside', asideClasses)">
       <slot name="aside" />
     </aside>
   </div>

@@ -11,6 +11,7 @@
   "dependencies": {
     "@vue-ui/theme": "workspace:*",
     "@vue-ui/ui": "workspace:*",
+    "shiki": "^3.15.0",
     "vue": "^3.5.24"
   },
   "devDependencies": {
