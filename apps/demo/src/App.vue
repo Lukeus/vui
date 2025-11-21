@@ -17,7 +17,6 @@ import {
   Breadcrumbs,
   Button,
   Calendar,
-  Card,
   Combobox,
   Dropdown,
   DropdownButton,
@@ -39,28 +38,51 @@ import {
   Tabs,
   Text,
 } from '@vue-ui/ui'
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import BadgePlayground from './components/BadgePlayground.vue'
+import ButtonPlayground from './components/ButtonPlayground.vue'
 import CodeExample from './components/CodeExample.vue'
 import FileTree from './components/FileTree.vue'
+import InputPlayground from './components/InputPlayground.vue'
+import SettingsPanel from './components/SettingsPanel.vue'
+import { useSettings } from './composables/useSettings'
 import type { TreeItem } from './data/component-tree'
 import { componentTree } from './data/component-tree'
 
 const name = ref('')
-const darkMode = ref(false)
 const useMultiColumn = ref(true) // Toggle between layouts
-const showSecondarySidebar = ref(true)
-const showAside = ref(true)
 const searchQuery = ref('')
 const activeComponentId = ref('')
 
-const toggleDarkMode = () => {
-  darkMode.value = !darkMode.value
-  if (darkMode.value) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-}
+// Settings management with localStorage persistence
+const {
+  settings,
+  toggleDarkMode,
+  toggleSecondarySidebar,
+  toggleAside,
+  toggleLineNumbers,
+  toggleWordWrap,
+  updateSetting,
+  resetSettings,
+} = useSettings()
+
+// Sync settings to UI state
+const darkMode = computed(() => settings.value.darkMode)
+const showSecondarySidebar = computed(() => settings.value.showSecondarySidebar)
+const showAside = computed(() => settings.value.showAside)
+
+// Watch darkMode and apply to document
+watch(
+  darkMode,
+  (newValue) => {
+    if (newValue) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  },
+  { immediate: true }
+)
 
 // Sidebar Navigation
 const navigation = [
@@ -446,10 +468,10 @@ import { Button } from '@vue-ui/ui'
 
           <div class="flex items-center gap-x-4 lg:gap-x-6">
             <!-- Layout Controls -->
-            <Button @click="showSecondarySidebar = !showSecondarySidebar" color="zinc" plain size="sm">
+            <Button @click="toggleSecondarySidebar" color="zinc" plain size="sm">
               {{ showSecondarySidebar ? 'Hide' : 'Show' }} Files
             </Button>
-            <Button @click="showAside = !showAside" color="zinc" plain size="sm">
+            <Button @click="toggleAside" color="zinc" plain size="sm">
               {{ showAside ? 'Hide' : 'Show' }} Properties
             </Button>
 
@@ -566,7 +588,7 @@ import { Button } from '@vue-ui/ui'
         </div>
 
         <!-- Buttons Section -->
-        <section id="button" class="space-y-4">
+        <section id="button" class="space-y-6">
           <Heading :level="2">Buttons</Heading>
 
           <div class="space-y-4">
@@ -584,10 +606,13 @@ import { Button } from '@vue-ui/ui'
               <Button disabled>Disabled</Button>
             </div>
           </div>
+
+          <!-- Button Playground -->
+          <ButtonPlayground />
         </section>
 
         <!-- Inputs Section -->
-        <section id="input" class="space-y-4">
+        <section id="input" class="space-y-6">
           <Heading :level="2">Inputs</Heading>
 
           <div class="space-y-4">
@@ -601,10 +626,13 @@ import { Button } from '@vue-ui/ui'
               <Input type="email" placeholder="you@example.com" />
             </div>
           </div>
+
+          <!-- Input Playground -->
+          <InputPlayground />
         </section>
 
         <!-- Badges Section -->
-        <section id="badge" class="space-y-4">
+        <section id="badge" class="space-y-6">
           <Heading :level="2">Badges</Heading>
 
           <div class="flex flex-wrap gap-3">
@@ -614,6 +642,9 @@ import { Button } from '@vue-ui/ui'
             <Badge color="yellow">Yellow</Badge>
             <Badge color="red">Red</Badge>
           </div>
+
+          <!-- Badge Playground -->
+          <BadgePlayground />
         </section>
 
         <!-- Breadcrumbs Section -->
@@ -655,35 +686,17 @@ import { Button } from '@vue-ui/ui'
     <!-- Right Aside -->
     <template #aside>
       <div class="px-4 py-6 sm:px-6 lg:px-8">
-        <Heading :level="3" class="mb-4">Properties</Heading>
-        <Card variant="outlined" class="p-4">
-          <div class="space-y-4">
-            <div>
-              <Text class="text-sm font-semibold text-zinc-900 dark:text-white">Layout Settings</Text>
-              <div class="mt-2 space-y-2">
-                <div class="flex items-center justify-between">
-                  <Text class="text-sm text-zinc-600 dark:text-zinc-400">Dark Mode</Text>
-                  <Badge :color="darkMode ? 'green' : 'zinc'">{{ darkMode ? 'On' : 'Off' }}</Badge>
-                </div>
-                <div class="flex items-center justify-between">
-                  <Text class="text-sm text-zinc-600 dark:text-zinc-400">Secondary Sidebar</Text>
-                  <Badge :color="showSecondarySidebar ? 'green' : 'zinc'">
-                    {{ showSecondarySidebar ? 'Visible' : 'Hidden' }}
-                  </Badge>
-                </div>
-              </div>
-            </div>
-
-            <div class="border-t border-zinc-200 pt-4 dark:border-zinc-800">
-              <Text class="text-sm font-semibold text-zinc-900 dark:text-white">Component Info</Text>
-              <div class="mt-2 space-y-1">
-                <Text class="text-sm text-zinc-600 dark:text-zinc-400">Total Components: 42</Text>
-                <Text class="text-sm text-zinc-600 dark:text-zinc-400">Vue Version: 3.5</Text>
-                <Text class="text-sm text-zinc-600 dark:text-zinc-400">Tailwind CSS: 4.1</Text>
-              </div>
-            </div>
-          </div>
-        </Card>
+        <Heading :level="3" class="mb-4">Settings</Heading>
+        <SettingsPanel
+          :settings="settings"
+          @toggle-dark-mode="toggleDarkMode"
+          @toggle-secondary-sidebar="toggleSecondarySidebar"
+          @toggle-aside="toggleAside"
+          @toggle-line-numbers="toggleLineNumbers"
+          @toggle-word-wrap="toggleWordWrap"
+          @update-font-size="(size) => updateSetting('fontSize', size)"
+          @reset="resetSettings"
+        />
       </div>
     </template>
   </MultiColumnLayout>
