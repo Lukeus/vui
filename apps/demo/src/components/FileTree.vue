@@ -60,22 +60,23 @@ const filteredItems = computed(() => {
 
   const query = props.searchQuery.toLowerCase()
 
-  return props.items
-    .map((folder) => {
-      if (folder.type === 'folder' && folder.children) {
-        const filteredChildren = folder.children.filter((child) => child.name.toLowerCase().includes(query))
+  const matchedFolders: TreeItem[] = []
 
-        if (filteredChildren.length > 0) {
-          // Auto-expand folders with matches
-          if (!expandedFolders.value.has(folder.name)) {
-            expandedFolders.value.add(folder.name)
-          }
-          return { ...folder, children: filteredChildren }
+  for (const folder of props.items) {
+    if (folder.type === 'folder' && folder.children) {
+      const filteredChildren = folder.children.filter((child) => child.name.toLowerCase().includes(query))
+
+      if (filteredChildren.length > 0) {
+        // Auto-expand folders with matches
+        if (!expandedFolders.value.has(folder.name)) {
+          expandedFolders.value.add(folder.name)
         }
+        matchedFolders.push({ ...folder, children: filteredChildren })
       }
-      return null
-    })
-    .filter((item): item is TreeItem => item !== null)
+    }
+  }
+
+  return matchedFolders
 })
 
 const isFolderExpanded = (folderName: string) => {

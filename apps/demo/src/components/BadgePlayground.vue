@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BadgeColor, BadgeSize } from '@vue-ui/ui'
 import { Badge } from '@vue-ui/ui'
 import { usePlayground } from '../composables/usePlayground'
 import type { PropConfig } from '../utils/code-generator'
@@ -40,7 +41,7 @@ const playground = usePlayground({
 </script>
 
 <template>
-  <ComponentPlayground title="Badge Playground" :code="playground.generatedCode" @reset="playground.reset">
+  <ComponentPlayground title="Badge Playground" :code="playground.generatedCode.value" @reset="playground.reset">
     <template #controls>
       <!-- Color Select -->
       <div>
@@ -66,9 +67,10 @@ const playground = usePlayground({
 
       <!-- Content Input -->
       <div>
-        <label class="mb-2 block text-sm font-medium text-zinc-900 dark:text-white">Badge Text</label>
+        <label for="badge-text" class="mb-2 block text-sm font-medium text-zinc-900 dark:text-white">Badge Text</label>
         <input
-          v-model="playground.content"
+          id="badge-text"
+          v-model="playground.content.value"
           type="text"
           class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden dark:border-white/10 dark:bg-zinc-800 dark:text-white"
           placeholder="Badge text"
@@ -77,8 +79,8 @@ const playground = usePlayground({
     </template>
 
     <template #preview>
-      <Badge :color="playground.propValues.color as any" :size="playground.propValues.size as any">
-        {{ playground.content }}
+      <Badge :color="(playground.propValues.color as BadgeColor)" :size="(playground.propValues.size as BadgeSize)">
+        {{ playground.content.value }}
       </Badge>
     </template>
   </ComponentPlayground>

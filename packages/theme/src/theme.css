@@ -554,3 +554,36 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ========================================
+ * LAYOUT UTILITIES
+ * ======================================== */
+
+/* Custom layout utilities using @layer for Tailwind 4 */
+@layer utilities {
+  /* Padding utilities for layout */
+  .pl-sidebar-icon {
+    padding-left: 5rem; /* 80px */
+  }
+
+  .pl-sidebar-full {
+    padding-left: 29rem; /* icon 5rem + secondary 24rem = 29rem */
+  }
+
+  .pr-aside {
+    padding-right: 24rem; /* 384px */
+  }
+
+  /* Footer positioning */
+  .left-sidebar-icon {
+    left: 5rem;
+  }
+
+  .left-sidebar-full {
+    left: 29rem;
+  }
+
+  .right-aside {
+    right: 24rem;
+  }
+}

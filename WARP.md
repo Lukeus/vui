@@ -221,6 +221,44 @@ pnpm build
 # 4. Verify component is registered properly
 ```
 
+## Recent Changes
+
+### MultiColumnLayout Restructure (November 2025)
+
+The `MultiColumnLayout` component was restructured from fixed positioning to flexbox layout:
+
+**Before:**
+- Header and footer positioned with padding for sidebars
+- Sidebars used `fixed` positioning with `top-0`, `bottom-0`, etc.
+
+**After:**
+- Flexbox column layout with full-width header and footer
+- Sidebars as flex children in horizontal container
+- Better matches VS Code's layout behavior
+
+**Key Files Modified:**
+- `packages/ui/src/components/MultiColumnLayout.vue` - Layout restructure
+- `apps/demo/src/App.vue` - Branding moved to header, footer styling updated
+- `apps/demo/src/style.css` - Added Tailwind CSS 4 source rebasing
+- `apps/demo/src/styles/vscode-theme.css` - Added light mode scrollbar styles
+
+### Tailwind CSS 4 Monorepo Configuration
+
+**Critical:** Tailwind CSS 4 uses automatic source detection. In monorepos, this needs manual configuration:
+
+```css
+/* apps/demo/src/style.css */
+@import 'tailwindcss' source('../../..');
+```
+
+Without the `source()` function, Tailwind only scans from the CSS file's directory, missing components in `packages/ui/`. This causes positioning utilities (`left-0`, `right-0`, etc.) to not be generated.
+
+**Migration Notes:**
+- ✅ `tailwind.config.ts` `content` array is ignored in Tailwind CSS 4
+- ✅ Use `source()` function in CSS imports instead
+- ✅ Custom utilities in `@layer utilities` still work
+- ✅ Theme tokens defined in `@theme` directive are available
+
 ## Common Issues & Solutions
 
 ### Issue: "Module not found" errors
@@ -245,14 +283,12 @@ pnpm install
 // Ensure theme CSS is imported in apps/demo/src/main.ts
 import '@vue-ui/theme/theme.css'
 
-// Check tailwind.config.ts content paths
-export default {
-  content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
-    '../../packages/ui/src/**/*.{vue,ts}', // Include UI package
-  ],
-}
+// For Tailwind CSS 4, use source() in CSS imports instead of tailwind.config.ts
+// apps/demo/src/style.css:
+@import 'tailwindcss' source('../../..');
+
+// This rebases Tailwind's source detection to the monorepo root,
+// ensuring utilities are generated for all packages
 ```
 
 ### Issue: Dark mode not working

@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 export interface AppSettings {
   // Theme preferences
@@ -16,8 +16,6 @@ export interface AppSettings {
   fontSize: 'sm' | 'md' | 'lg'
 }
 
-const STORAGE_KEY = 'vue-ui-demo-settings'
-
 const defaultSettings: AppSettings = {
   darkMode: false,
   showSecondarySidebar: true,
@@ -28,47 +26,11 @@ const defaultSettings: AppSettings = {
 }
 
 /**
- * Load settings from localStorage
- */
-function loadSettings(): AppSettings {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      const parsed = JSON.parse(stored)
-      return { ...defaultSettings, ...parsed }
-    }
-  } catch (error) {
-    console.error('Failed to load settings from localStorage:', error)
-  }
-  return { ...defaultSettings }
-}
-
-/**
- * Save settings to localStorage
- */
-function saveSettings(settings: AppSettings): void {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
-  } catch (error) {
-    console.error('Failed to save settings to localStorage:', error)
-  }
-}
-
-/**
- * Composable for managing app settings with localStorage persistence
+ * Composable for managing app settings (in-memory only, no persistence)
  */
 export function useSettings() {
-  // Initialize from localStorage or defaults
-  const settings = ref<AppSettings>(loadSettings())
-
-  // Watch for changes and persist to localStorage
-  watch(
-    settings,
-    (newSettings) => {
-      saveSettings(newSettings)
-    },
-    { deep: true }
-  )
+  // Initialize with defaults
+  const settings = ref<AppSettings>({ ...defaultSettings })
 
   /**
    * Update a single setting

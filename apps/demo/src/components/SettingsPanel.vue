@@ -7,7 +7,7 @@ interface SettingsPanelProps {
   settings: AppSettings
 }
 
-const props = defineProps<SettingsPanelProps>()
+defineProps<SettingsPanelProps>()
 
 const emit = defineEmits<{
   'toggle-dark-mode': []

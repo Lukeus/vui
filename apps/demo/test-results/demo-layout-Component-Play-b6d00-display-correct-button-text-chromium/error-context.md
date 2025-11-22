@@ -1,0 +1,384 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "Vue UI" [ref=e7]
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - textbox "Search" [ref=e11]
+        - img
+      - generic [ref=e12]:
+        - button "View notifications" [ref=e13]:
+          - generic [ref=e14]: View notifications
+          - img [ref=e15]
+        - button "🌙" [ref=e18]
+        - button "Open user menu" [ref=e21]:
+          - generic [ref=e22]: Open user menu
+          - generic [ref=e23]:
+            - generic [ref=e24]: Tom Cook
+            - img [ref=e25]
+  - generic [ref=e27]:
+    - complementary [ref=e28]:
+      - navigation [ref=e29]:
+        - list [ref=e30]:
+          - listitem [ref=e31]:
+            - link "Dashboard" [ref=e32] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e33]
+              - generic [ref=e35]: Dashboard
+            - generic: Dashboard
+          - listitem [ref=e36]:
+            - link "Components" [ref=e37] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e38]
+              - generic [ref=e41]: Components
+            - generic: Components
+          - listitem [ref=e42]:
+            - link "Calendar" [ref=e43] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e44]
+              - generic [ref=e46]: Calendar
+            - generic: Calendar
+          - listitem [ref=e47]:
+            - link "Documents" [ref=e48] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e49]
+              - generic [ref=e52]: Documents
+            - generic: Documents
+          - listitem [ref=e53]:
+            - link "Reports" [ref=e54] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e55]
+              - generic [ref=e58]: Reports
+            - generic: Reports
+    - complementary [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e62]:
+          - img
+          - textbox "Search components..." [ref=e63]
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e67] [cursor=pointer]:
+              - img [ref=e68]
+              - img [ref=e70]
+              - generic [ref=e72]: Base
+            - generic [ref=e73]:
+              - generic [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+                - generic [ref=e77]: Button.vue
+              - generic [ref=e78] [cursor=pointer]:
+                - img [ref=e79]
+                - generic [ref=e81]: Input.vue
+              - generic [ref=e82] [cursor=pointer]:
+                - img [ref=e83]
+                - generic [ref=e85]: Badge.vue
+              - generic [ref=e86] [cursor=pointer]:
+                - img [ref=e87]
+                - generic [ref=e89]: Link.vue
+              - generic [ref=e90] [cursor=pointer]:
+                - img [ref=e91]
+                - generic [ref=e93]: Text.vue
+          - generic [ref=e94]:
+            - generic [ref=e95] [cursor=pointer]:
+              - img [ref=e96]
+              - img [ref=e98]
+              - generic [ref=e100]: Forms
+            - generic [ref=e101]:
+              - generic [ref=e102] [cursor=pointer]:
+                - img [ref=e103]
+                - generic [ref=e105]: Checkbox.vue
+              - generic [ref=e106] [cursor=pointer]:
+                - img [ref=e107]
+                - generic [ref=e109]: Radio.vue
+              - generic [ref=e110] [cursor=pointer]:
+                - img [ref=e111]
+                - generic [ref=e113]: RadioGroup.vue
+              - generic [ref=e114] [cursor=pointer]:
+                - img [ref=e115]
+                - generic [ref=e117]: Select.vue
+              - generic [ref=e118] [cursor=pointer]:
+                - img [ref=e119]
+                - generic [ref=e121]: Textarea.vue
+              - generic [ref=e122] [cursor=pointer]:
+                - img [ref=e123]
+                - generic [ref=e125]: Fieldset.vue
+              - generic [ref=e126] [cursor=pointer]:
+                - img [ref=e127]
+                - generic [ref=e129]: Toggle.vue
+              - generic [ref=e130] [cursor=pointer]:
+                - img [ref=e131]
+                - generic [ref=e133]: Combobox.vue
+          - generic [ref=e135] [cursor=pointer]:
+            - img [ref=e136]
+            - img [ref=e138]
+            - generic [ref=e140]: Navigation
+          - generic [ref=e142] [cursor=pointer]:
+            - img [ref=e143]
+            - img [ref=e145]
+            - generic [ref=e147]: Overlays
+          - generic [ref=e149] [cursor=pointer]:
+            - img [ref=e150]
+            - img [ref=e152]
+            - generic [ref=e154]: Data Display
+          - generic [ref=e156] [cursor=pointer]:
+            - img [ref=e157]
+            - img [ref=e159]
+            - generic [ref=e161]: Feedback
+          - generic [ref=e163] [cursor=pointer]:
+            - img [ref=e164]
+            - img [ref=e166]
+            - generic [ref=e168]: Layout
+    - main [ref=e169]:
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - heading "Vue UI Component Library" [level=1] [ref=e173]
+          - paragraph [ref=e174]: VS Code-inspired demo showcasing 42+ production-ready components
+        - generic [ref=e175]:
+          - heading "Buttons" [level=2] [ref=e176]
+          - generic [ref=e177]:
+            - generic [ref=e178]:
+              - button "Default" [ref=e179]
+              - button "Indigo" [ref=e180]
+              - button "Blue" [ref=e181]
+              - button "Green" [ref=e182]
+              - button "Red" [ref=e183]
+            - generic [ref=e184]:
+              - button "Outline" [ref=e185]
+              - button "Plain" [ref=e186]
+              - button "Disabled" [disabled] [ref=e187]
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - heading "Button Playground" [level=3] [ref=e190]
+              - button "Reset" [ref=e191]
+            - generic [ref=e192]:
+              - tablist [ref=e194]:
+                - tab "Controls & Preview" [selected] [ref=e195]
+                - tab "Code" [ref=e196]
+              - tabpanel "Controls & Preview" [ref=e198]:
+                - generic [ref=e199]:
+                  - generic [ref=e200]:
+                    - heading "Controls" [level=4] [ref=e201]
+                    - generic [ref=e202]:
+                      - generic [ref=e203]:
+                        - generic [ref=e204]: Color
+                        - combobox [ref=e205]:
+                          - option "dark/zinc" [selected]
+                          - option "indigo"
+                          - option "blue"
+                          - option "green"
+                          - option "red"
+                          - option "orange"
+                          - option "amber"
+                          - option "yellow"
+                          - option "lime"
+                          - option "emerald"
+                          - option "teal"
+                          - option "cyan"
+                          - option "sky"
+                          - option "violet"
+                          - option "purple"
+                          - option "fuchsia"
+                          - option "pink"
+                          - option "rose"
+                          - option "zinc"
+                          - option "light"
+                          - option "dark"
+                          - option "white"
+                          - option "dark/white"
+                      - generic [ref=e206]:
+                        - generic [ref=e207]: Outline
+                        - checkbox [ref=e208]
+                      - generic [ref=e209]:
+                        - generic [ref=e210]: Plain
+                        - checkbox [ref=e211]
+                      - generic [ref=e212]:
+                        - generic [ref=e213]: Disabled
+                        - checkbox [ref=e214]
+                      - generic [ref=e215]:
+                        - generic [ref=e216]: Loading
+                        - checkbox [ref=e217]
+                      - generic [ref=e218]:
+                        - generic [ref=e219]: Button Text
+                        - textbox "Button Text" [ref=e220]:
+                          - /placeholder: Button text
+                          - text: Click me
+                  - generic [ref=e221]:
+                    - heading "Preview" [level=4] [ref=e222]
+                    - button "Click me" [ref=e224]
+        - generic [ref=e225]:
+          - heading "Inputs" [level=2] [ref=e226]
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e229]: Name
+              - textbox "Enter your name" [ref=e231]
+            - generic [ref=e232]:
+              - generic [ref=e233]: Email
+              - textbox "you@example.com" [ref=e235]
+          - generic [ref=e236]:
+            - generic [ref=e237]:
+              - heading "Input Playground" [level=3] [ref=e238]
+              - button "Reset" [ref=e239]
+            - generic [ref=e240]:
+              - tablist [ref=e242]:
+                - tab "Controls & Preview" [selected] [ref=e243]
+                - tab "Code" [ref=e244]
+              - tabpanel "Controls & Preview" [ref=e246]:
+                - generic [ref=e247]:
+                  - generic [ref=e248]:
+                    - heading "Controls" [level=4] [ref=e249]
+                    - generic [ref=e250]:
+                      - generic [ref=e251]:
+                        - generic [ref=e252]: Type
+                        - combobox "Type" [ref=e253]:
+                          - option "text" [selected]
+                          - option "email"
+                          - option "password"
+                          - option "search"
+                          - option "tel"
+                          - option "url"
+                          - option "number"
+                          - option "date"
+                      - generic [ref=e254]:
+                        - generic [ref=e255]: Placeholder
+                        - textbox "Placeholder" [ref=e256]:
+                          - /placeholder: Placeholder text
+                          - text: Enter text...
+                      - generic [ref=e257]:
+                        - generic [ref=e258]: Disabled
+                        - checkbox "Disabled" [ref=e259]
+                      - generic [ref=e260]:
+                        - generic [ref=e261]: Invalid
+                        - checkbox "Invalid" [ref=e262]
+                  - generic [ref=e263]:
+                    - heading "Preview" [level=4] [ref=e264]
+                    - textbox "Enter text..." [ref=e268]
+        - generic [ref=e269]:
+          - heading "Badges" [level=2] [ref=e270]
+          - generic [ref=e271]:
+            - status [ref=e272]: Default
+            - status [ref=e273]: Blue
+            - status [ref=e274]: Green
+            - status [ref=e275]: Yellow
+            - status [ref=e276]: Red
+          - generic [ref=e277]:
+            - generic [ref=e278]:
+              - heading "Badge Playground" [level=3] [ref=e279]
+              - button "Reset" [ref=e280]
+            - generic [ref=e281]:
+              - tablist [ref=e283]:
+                - tab "Controls & Preview" [selected] [ref=e284]
+                - tab "Code" [ref=e285]
+              - tabpanel "Controls & Preview" [ref=e287]:
+                - generic [ref=e288]:
+                  - generic [ref=e289]:
+                    - heading "Controls" [level=4] [ref=e290]
+                    - generic [ref=e291]:
+                      - generic [ref=e292]:
+                        - generic [ref=e293]: Color
+                        - combobox [ref=e294]:
+                          - option "zinc"
+                          - option "red"
+                          - option "orange"
+                          - option "amber"
+                          - option "yellow"
+                          - option "lime"
+                          - option "green"
+                          - option "emerald"
+                          - option "teal"
+                          - option "cyan"
+                          - option "sky"
+                          - option "blue" [selected]
+                          - option "indigo"
+                          - option "violet"
+                          - option "purple"
+                          - option "fuchsia"
+                          - option "pink"
+                          - option "rose"
+                      - generic [ref=e295]:
+                        - generic [ref=e296]: Size
+                        - combobox [ref=e297]:
+                          - option "sm"
+                          - option "md" [selected]
+                          - option "lg"
+                      - generic [ref=e298]:
+                        - generic [ref=e299]: Badge Text
+                        - textbox "Badge Text" [ref=e300]:
+                          - /placeholder: Badge text
+                          - text: Badge
+                  - generic [ref=e301]:
+                    - heading "Preview" [level=4] [ref=e302]
+                    - status [ref=e304]: Badge
+        - generic [ref=e305]:
+          - heading "Interactive Demo" [level=2] [ref=e306]
+          - paragraph [ref=e307]: "Try entering your name above:"
+          - paragraph [ref=e308]: Enter your name to see a personalized greeting.
+        - paragraph [ref=e310]: Built with Vue 3 · TypeScript · Tailwind CSS 4 · @headlessui/vue
+    - complementary [ref=e311]:
+      - generic [ref=e312]:
+        - heading "Settings" [level=3] [ref=e313]
+        - generic [ref=e314]:
+          - generic [ref=e315]:
+            - heading "Theme" [level=3] [ref=e316]
+            - generic [ref=e319]:
+              - generic [ref=e320]:
+                - paragraph [ref=e321]: Dark Mode
+                - paragraph [ref=e322]: Toggle dark theme
+              - switch [ref=e323] [cursor=pointer]
+          - generic [ref=e324]:
+            - heading "Layout" [level=3] [ref=e325]
+            - generic [ref=e327]:
+              - generic [ref=e328]:
+                - paragraph [ref=e329]: Component Browser
+                - status [ref=e330]: Visible
+              - button "Hide Browser" [ref=e331]
+              - generic [ref=e333]:
+                - paragraph [ref=e334]: Properties Panel
+                - status [ref=e335]: Visible
+              - button "Hide Properties" [ref=e336]
+          - generic [ref=e337]:
+            - heading "Code Display" [level=3] [ref=e338]
+            - generic [ref=e340]:
+              - generic [ref=e341]:
+                - generic [ref=e342]:
+                  - paragraph [ref=e343]: Line Numbers
+                  - paragraph [ref=e344]: Show in code blocks
+                - checkbox [ref=e345]
+              - generic [ref=e346]:
+                - generic [ref=e347]:
+                  - paragraph [ref=e348]: Word Wrap
+                  - paragraph [ref=e349]: Wrap long lines
+                - checkbox [checked] [ref=e350]
+              - generic [ref=e352]:
+                - paragraph [ref=e353]: Font Size
+                - generic [ref=e354]:
+                  - button "SM" [ref=e355]
+                  - button "MD" [ref=e356]
+                  - button "LG" [ref=e357]
+          - generic [ref=e358]:
+            - heading "About" [level=3] [ref=e359]
+            - generic [ref=e361]:
+              - generic [ref=e362]:
+                - paragraph [ref=e363]: Components
+                - paragraph [ref=e364]: "42"
+              - generic [ref=e365]:
+                - paragraph [ref=e366]: Vue Version
+                - paragraph [ref=e367]: "3.5"
+              - generic [ref=e368]:
+                - paragraph [ref=e369]: Tailwind CSS
+                - paragraph [ref=e370]: "4.1"
+          - button "Reset to Defaults" [ref=e371]
+  - contentinfo [ref=e372]:
+    - generic [ref=e373]:
+      - generic [ref=e374]:
+        - button "main" [ref=e375]:
+          - img [ref=e376]
+          - generic [ref=e379]: main
+        - button "✓ 0 ✗ 0" [ref=e380]
+        - button "⚠ 0" [ref=e381]
+      - generic [ref=e382]:
+        - button "Vue 3.5.13" [ref=e383]
+        - button "TypeScript" [ref=e384]
+        - button "UTF-8" [ref=e385]
+        - button "LF" [ref=e386]
+```

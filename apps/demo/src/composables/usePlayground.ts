@@ -14,15 +14,16 @@ export interface PlaygroundConfig {
 export function usePlayground(config: PlaygroundConfig) {
   const componentName = ref(config.componentName)
   const importPath = ref(config.importPath || '@vue-ui/ui')
-  const content = ref(config.content || '')
+  const contentValue = ref(config.content || '')
 
   // Create reactive prop values from initial config
   const propValues = reactive<Record<string, string | number | boolean | null>>(
-    Object.fromEntries(config.props.map((prop) => [prop.name, prop.defaultValue ?? prop.value]))
+    Object.fromEntries(config.props.map((prop) => [prop.name, prop.value]))
   )
 
   // Store initial values for reset
   const initialPropValues = { ...propValues }
+  const initialContent = config.content || ''
 
   /**
    * Generate code snippet from current prop values
@@ -36,7 +37,7 @@ export function usePlayground(config: PlaygroundConfig) {
     return generateComponentCode({
       componentName: componentName.value,
       props: propsWithValues,
-      content: content.value,
+      content: contentValue.value,
       importPath: importPath.value,
     })
   })
@@ -60,17 +61,26 @@ export function usePlayground(config: PlaygroundConfig) {
    */
   const reset = () => {
     Object.keys(propValues).forEach((key) => {
-      propValues[key] = initialPropValues[key]
+      const initialValue = initialPropValues[key]
+      propValues[key] = initialValue !== undefined ? initialValue : null
     })
-    content.value = config.content || ''
+    contentValue.value = initialContent
   }
 
   /**
    * Update content/slot value
    */
   const setContent = (newContent: string) => {
-    content.value = newContent
+    contentValue.value = newContent
   }
+
+  // Writable computed for content to ensure proper v-model binding in templates
+  const content = computed({
+    get: () => contentValue.value,
+    set: (val: string) => {
+      contentValue.value = val
+    },
+  })
 
   return {
     componentName,

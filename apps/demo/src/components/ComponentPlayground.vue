@@ -9,7 +9,7 @@ interface ComponentPlaygroundProps {
   showReset?: boolean
 }
 
-const props = withDefaults(defineProps<ComponentPlaygroundProps>(), {
+withDefaults(defineProps<ComponentPlaygroundProps>(), {
   title: 'Playground',
   showReset: true,
 })

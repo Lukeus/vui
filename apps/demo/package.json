@@ -6,20 +6,26 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@vue-ui/theme": "workspace:*",
     "@vue-ui/ui": "workspace:*",
+    "@vueuse/core": "^14.0.0",
     "shiki": "^3.15.0",
     "vue": "^3.5.24"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.1.15",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "playwright": "^1.56.1",
     "postcss": "^8.4.49",
     "postcss-import": "^16.1.1",
     "tailwindcss": "^4.1.15",

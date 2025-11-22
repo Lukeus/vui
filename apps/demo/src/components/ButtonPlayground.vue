@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ButtonColor } from '@vue-ui/ui'
 import { Button } from '@vue-ui/ui'
 import { watch } from 'vue'
 import { usePlayground } from '../composables/usePlayground'
@@ -32,7 +33,7 @@ const colors = [
 ]
 
 const propConfigs: PropConfig[] = [
-  { name: 'color', value: 'indigo', type: 'select', defaultValue: 'dark/zinc' },
+  { name: 'color', value: 'dark/zinc', type: 'select', defaultValue: 'dark/zinc' },
   { name: 'outline', value: false, type: 'boolean', defaultValue: false },
   { name: 'plain', value: false, type: 'boolean', defaultValue: false },
   { name: 'disabled', value: false, type: 'boolean', defaultValue: false },
@@ -66,7 +67,7 @@ watch(
 </script>
 
 <template>
-  <ComponentPlayground title="Button Playground" :code="playground.generatedCode" @reset="playground.reset">
+  <ComponentPlayground title="Button Playground" :code="playground.generatedCode.value" @reset="playground.reset">
     <template #controls>
       <!-- Color Select -->
       <div>
@@ -121,9 +122,12 @@ watch(
 
       <!-- Content Input -->
       <div>
-        <label class="mb-2 block text-sm font-medium text-zinc-900 dark:text-white">Button Text</label>
+        <label for="button-text" class="mb-2 block text-sm font-medium text-zinc-900 dark:text-white"
+          >Button Text</label
+        >
         <input
-          v-model="playground.content"
+          id="button-text"
+          v-model="playground.content.value"
           type="text"
           class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden dark:border-white/10 dark:bg-zinc-800 dark:text-white"
           placeholder="Button text"
@@ -133,13 +137,13 @@ watch(
 
     <template #preview>
       <Button
-        :color="playground.propValues.color as any"
+        :color="(playground.propValues.color as ButtonColor)"
         :outline="!!playground.propValues.outline"
         :plain="!!playground.propValues.plain"
         :disabled="!!playground.propValues.disabled"
         :loading="!!playground.propValues.loading"
       >
-        {{ playground.content }}
+        {{ playground.content.value }}
       </Button>
     </template>
   </ComponentPlayground>
