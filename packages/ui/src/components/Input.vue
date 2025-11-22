@@ -2,21 +2,23 @@
 import { computed, useId } from 'vue'
 import { cn } from '../utils/classes'
 
+export type InputType =
+  | 'email'
+  | 'number'
+  | 'password'
+  | 'search'
+  | 'tel'
+  | 'text'
+  | 'url'
+  | 'date'
+  | 'datetime-local'
+  | 'month'
+  | 'time'
+  | 'week'
+
 interface InputProps {
   modelValue?: string | number
-  type?:
-    | 'email'
-    | 'number'
-    | 'password'
-    | 'search'
-    | 'tel'
-    | 'text'
-    | 'url'
-    | 'date'
-    | 'datetime-local'
-    | 'month'
-    | 'time'
-    | 'week'
+  type?: InputType
   placeholder?: string
   disabled?: boolean
   invalid?: boolean

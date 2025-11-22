@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { cn } from '../utils/classes'
 
-type BadgeColor =
+export type BadgeColor =
   | 'red'
   | 'orange'
   | 'amber'
@@ -22,7 +22,7 @@ type BadgeColor =
   | 'rose'
   | 'zinc'
 
-type BadgeSize = 'sm' | 'md' | 'lg'
+export type BadgeSize = 'sm' | 'md' | 'lg'
 
 /**
  * Badge component for displaying status indicators and labels

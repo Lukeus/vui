@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { cn } from '../utils/classes'
 import Link from './Link.vue'
 
-type ButtonColor =
+export type ButtonColor =
   | 'dark/zinc'
   | 'light'
   | 'dark/white'
